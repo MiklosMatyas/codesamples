@@ -1,0 +1,8 @@
+mnet_click.goto:
+  path: '/goto'
+  defaults:
+    _controller: '\Drupal\mnet_click\Controller\MnetClickController::goto'
+  requirements:
+    _permission: 'access content'
+  options:
+      no_cache: TRUE

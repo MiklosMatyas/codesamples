@@ -1,0 +1,9 @@
+name: mnet_extra
+description: 'MNET extra functions.'
+type: module
+package: Custom
+core: 8.x
+core_version_requirement: ^8 || ^9
+#required: true
+dependencies:
+  - extra_field:extra_field

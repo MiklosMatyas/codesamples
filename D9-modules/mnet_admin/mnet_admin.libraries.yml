@@ -1,0 +1,7 @@
+nodelib:
+  js:
+    js/mnet_node.js: {}
+  css:
+    theme:
+      css/mnet_admin.css: {}
+        

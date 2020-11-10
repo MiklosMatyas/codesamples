@@ -1,0 +1,15 @@
+
+ul.fb-thumbnails{
+    list-style: none;
+    margin-left: 0;
+}
+ul.fb-thumbnails li {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+#swipebox-overlay{
+    background: rgba(22,22,22, 0.97);
+}

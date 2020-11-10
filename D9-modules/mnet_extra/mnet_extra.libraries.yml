@@ -1,0 +1,4 @@
+nodelib:
+  js:
+    js/mnet-extra.js: {}
+        
