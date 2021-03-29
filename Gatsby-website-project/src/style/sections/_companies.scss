@@ -1,0 +1,59 @@
+#companies{
+    background-color: $light-grey;
+    padding-top: 116px;
+    margin-bottom: 132px;
+    hr.line{
+        margin-bottom: 102px;
+    }
+    .companies-wrapper__info-text{
+        &.blue{
+            color: $darker-blue;
+            max-width: 915px;
+            margin: 13px auto 56px auto;
+            line-height: 1.5;
+        }
+    }
+    .logos.row{
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        .col{
+            align-self: center;
+            margin-bottom: 33px;
+            &.Grundfos{
+                align-self: bottom;
+            }
+        }
+    }
+}
+#invest{
+    margin-top: 150px;
+    max-width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 50px;
+    h3{
+        font-family: "Calibri-Bold", sans-serif;
+        font-size: 2.9rem;
+        line-height: 1;
+        letter-spacing: 0.3px;
+        max-width: 626px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+    .info-text{
+        line-height: 1;
+        margin-left: -10px;
+        margin-right: -10px;
+        margin-bottom: 45px;
+    }
+    .link-1{
+        margin-bottom: 17px;
+    }
+    a{
+        color: $dark-blue;
+        font-family: "Calibri-Bold", sans-serif;
+    }
+}

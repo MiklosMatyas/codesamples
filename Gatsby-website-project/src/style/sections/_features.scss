@@ -1,0 +1,27 @@
+#features{
+    padding-top: 98px;
+    padding-bottom: 12px;
+    h3{
+        font-size: 3rem;
+        font-family:'Calibri-Bold',  sans-serif;
+        margin-bottom: -5px;
+    }
+    hr.line{
+        margin-bottom: 67px;
+    }
+    p{
+        text-align: left;
+        line-height: 1.1;
+    }
+    .container{
+        @media all and (min-width: 768px) {
+            max-width: 835px;
+        }
+    }
+    .about-wrapper__info{
+        margin-bottom: 75px;
+    }
+    .about-wrapper__image{
+        margin-top: 11px;
+    }
+}

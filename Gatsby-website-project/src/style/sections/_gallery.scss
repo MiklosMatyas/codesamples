@@ -1,0 +1,35 @@
+#gallery{
+    background-color: #FFF;
+    padding-bottom: 178px;
+    .container{
+        max-width: 100%;
+    }
+    hr.line{
+        margin-bottom: 90px;
+    }
+    .carousel-inner{
+        max-width: 1743px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .carousel-control-prev{
+        color: $blue-line;
+        width: 18%;
+    }
+    .carousel-control-prev-icon{
+        background-image: none;
+        width: 40px;
+        height: 40px;
+        border-top: 4px solid $blue-line;
+        border-left: 4px solid $blue-line;
+        transform: rotate(-45deg);
+    }
+    .carousel-control-next-icon{
+        background-image: none;
+        width: 40px;
+        height: 40px;
+        border-top: 4px solid $blue-line;
+        border-right: 4px solid $blue-line;
+        transform: rotate(45deg);
+    }
+}

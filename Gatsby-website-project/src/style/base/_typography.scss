@@ -1,0 +1,150 @@
+@font-face {
+  font-family: "Calibri";
+  src: url("../fonts/Calibri.woff2");
+}
+@font-face {
+  font-family: "Calibri-Light";
+  src: url("../fonts/Calibri-Light.woff2");
+}
+@font-face {
+  font-family: "Calibri-Bold";
+  src: url("../fonts/Calibri-Bold.woff2");
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+p,
+a,
+ul {
+  font-size: $default-font-size;
+  line-height: 1.65;
+  margin-bottom: 0;
+  @media all and (max-width: 767px){
+    letter-spacing: -0.4px;
+    line-height: 1;
+  }
+}
+
+ul{
+  padding-left: 18px;
+}
+li{
+  padding-left: 5px;
+  line-height: 1;
+}
+
+a,
+a:link,
+a:hover,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+a:hover {
+  transition: all 0.3s ease-in-out;
+}
+a:focus{
+  outline: none;
+}
+
+.section-title {
+  margin: 0px;
+  margin-bottom: 0.5rem;
+  font-size: $big-font-size;
+  line-height: 1.1;
+  color: $dark-grey;
+  font-weight: bold;
+  
+  @include respond(phone) {
+    font-size: 2.8rem;
+  }
+}
+hr.line{
+  border-top: 4px solid $blue-line;
+  margin: 0 auto 22px;
+  width: 100px;
+}
+
+.dark-blue-text {
+  color: $dark-blue-text !important;
+}
+
+.text-color-main {
+  background-image: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  // Responsive text purple style
+  @include respond(phone) {
+    background-image: none;
+    -webkit-text-fill-color: $secondary-color;
+  }
+
+  &:hover {
+    transform: translateX(2px);
+  }
+}
+
+.calibri-light{
+  font-family: 'Calibri-Light', sans-serif;
+  font-weight: 100;
+}
+
+.blue-line{
+  text-align: left;
+  &::after{
+    content: "";
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 4px;
+    background-color: $blue-line;
+  }
+}
+
+.big-1{
+  font-size: 2em;
+  font-family: 'Calibri-Bold', sans-serif;
+}
+
+.w-80{
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-wrapper{
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#video{
+  background-color: $light-grey;
+  padding-top: 137px;
+  padding-bottom: 183px;
+  .container{
+    padding-top: 50px;
+    @media (min-width: 1200px){
+      max-width: 1744px;
+
+    }
+  }
+}
+
+.nodisplay{
+  display: none;
+}
