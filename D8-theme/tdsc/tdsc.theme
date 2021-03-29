@@ -1,0 +1,40 @@
+<?php
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+/**
+ * Implements template_preprocess_paragraph().
+ * paragraph type: landing_page_element
+ *
+ * @param array $variables
+ */
+function tdsc_preprocess_paragraph__landing_page_element(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $variables['attributes']['class'][] = 'paragraph-size-' . $paragraph->field_size->value;
+}
+
+/**
+ * Implements template_preprocess_block().
+ *
+ * @param array $variables
+ */
+function tdsc_preprocess_block(&$variables) {
+  if (isset($variables["attributes"]["class"])) {
+    foreach ($variables["attributes"]["class"] as $class) {
+      if (preg_match('/title-bg-code-(\S+)/', $class, $matches)) {
+        $bgcolor = '#' . $matches[1];
+      }
+      elseif (preg_match('/title-bg-(\S+)/', $class, $matches)) {
+        $bgcolor = $matches[1];
+      }
+    }
+    if (isset($bgcolor)) {
+      $variables["title_attributes"]["style"][] = "background-color: " . $bgcolor;
+    }
+  }
+}
