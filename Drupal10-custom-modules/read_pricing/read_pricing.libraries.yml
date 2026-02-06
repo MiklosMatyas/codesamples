@@ -1,0 +1,32 @@
+read_pricing:
+  js:
+    js/pricing.js: {}
+  css:
+    theme:
+      /themes/read/css/pricing.css: {}
+
+read_pricing_home_family:
+  js:
+    js/orderform-family.js: {}
+
+read_pricing_home_homeschooler:
+  js:
+    js/orderform-homeschooler.js: {}
+
+read_pricing_business:
+  js:
+    js/orderform-business.js: {}
+
+read_pricing_lib:
+  js:
+    /libraries/bootstrap-slider/dependencies/js/highlight.min.js: {}
+    /libraries/bootstrap-slider/src/js/bootstrap-slider.js: {}
+    js/orderform-lib-slider.js: {}
+  css:
+    theme:
+      /libraries/bootstrap-slider/dependencies/css/highlightjs-github-theme.css: {}
+      /libraries/bootstrap-slider/dist/css/bootstrap-slider.css: {}
+
+read_pricing_education:
+  js:
+    js/orderform-education.js: {}

@@ -1,0 +1,145 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display something.
+ *
+ * Available variables:
+ * - foo: Foo variable description.
+ *
+ * @see template_preprocess_price_list_family()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="start-your start-your-first over-bg start-your-multi pricing-slider">
+<h2>Start your subscription now</h2>
+<div id="block-readandspell-price-list-family-2020">
+<div id="fees" class="ordering-section education-slider family-2020">
+	<div id="order-licence-form" class="order-licence-form multiform">
+
+		<label for="country">Choose your country</label><div class="country-wrapper"><select data-flag="GB" id="country" name="country"><option value="GB">United Kingdom</option><option value="US">United States</option><option value="IE">Ireland</option><option value="EU">Europe</option><?php if(drupal_get_path_alias() != "parents/home-course") : ?><option value="CA">Canada</option><?php endif; ?><option value="AU">Australia</option><option value="NZ">New Zealand</option><option value="Other">Other</option>
+		</select><div class="icon-down"></div></div>
+
+		<div class="currency-box">
+			{% include '@read_pricing/currency-selector.html.twig' %}
+		</div>
+		<div class="users-box-starter">
+
+			<div class="student-buttons">
+                <div class="student-wrapper">
+                    <div>How many students will you have?</div>
+                    <div class="users-box" >
+                        <span class="minus"></span>
+                        <div class="users-box-inner" >
+                            <input id="edit-submitted-number-of-users-new" name="users" size="2" class="form-text form-number" value="1" type="number" min="1" max="10" readonly="readonly">
+                        </div>
+                        <span class="plus"></span>
+                    </div>                
+                </div>                
+
+		  	<div class="clearfix"></div>
+			</div>
+		</div> 
+
+		<div class="users-box" style="display: none;">
+			<div class="users-box-inner" style="display: none;">
+				<input id="edit-submitted-number-of-users-new" name="users" size="5" class="form-text form-number" value="1" type="hidden" style="display: none;">
+			</div>
+		</div>
+
+	<div class="form-box">
+		<div class="period-box got-special-x">
+			<div class="wrapper-monthly">
+				<input type="radio" name="period" value="monthly" id="m1">
+				<label for="m1" class="period home first buy-section monthly1">
+					<span class="month-text"><span class="radio-circle"></span><span class="only-desktop">Pay monthly</span><span class="only-mobile">Monthly</span></span>
+					<span class="price-right">
+						<span class="from"></span><span class="permonth"> / month</span><br />
+						<span class="from-year"></span><span class="peryear"> / year</span>
+					</span>
+				</label>
+			</div>
+			<div class="wrapper-annually">
+				<input type="radio" name="period" value="Yearly" id="m12" checked="checked">
+				<label for="m12" class="period home last buy-section annualy">
+					<span class="month-text"><span class="radio-circle"></span><span class="only-desktop">Pay annually</span><span class="only-mobile">Annual</span></span>
+					<span class="price-right">
+						<span class="from"></span><span class="permonth"> / month</span><br />
+						<span class="from-year"></span><span class="peryear"> / year</span>
+					</span>
+				</label>
+			</div>
+			<div class="total">
+				<div class="special-banner red">Special offer -30%</div>
+				<span class="t-label">Total:</span>
+				<span class="t-fullpr"></span>
+				<span class="t-savepr"></span>
+				<span class="t-term"></span>
+			</div>
+		  <div class="clearfix"></div>
+		  <div class="contact-box" style="display: none;"><span><a href='/Contact_details' target='_blank' style='color: #B2DE65'>Please contact us</a></span></div>
+		</div>
+
+		<div class="mailtest-wrapper">
+			<div class="email-error"></div>
+			<input class="mailtest" type="text" name="mailtest" placeholder="Enter your e-mail"  />
+		</div>
+
+
+
+		<div class="submit-button-edu"><a class="cb_link button-order-orange" href="javascript:;">Start now</a></div>
+
+       	<div class="include-vat">Prices include VAT.</div>
+       	<center>
+			<label style="display: none;" class="price-are USD">Prices are in USD</label>
+			<label style="display: none;" class="price-are CAD">Prices are in CAD</label>
+			<label style="display: none;" class="price-are AUD">Prices are in AUD</label>
+			<label style="display: none;" class="price-are NZD">Prices are in NZD</label>
+		</center>
+		<div class="small-text">
+			<p>{{ 'Subscriptions are renewed automatically and can be cancelled or paused at any time.'|t }}</p>
+		</div>
+
+		<input type="hidden" name="cb_plan" id="cb_plan" data-plan="">
+	</div>
+
+		<div class="more-box" style="display: none;">
+			<p>Our home plans are designed for up to 5 users. However, if you require more than 5 users you can purchase a TTRS Education subscription.</p>
+			<div class="submit-button-edu"><a class="button-order-orange" href="education-licence#fees">Proceed to Education page</a></div>
+		</div>
+
+		<h2>All of our plans include:</h2>
+		<div class="plans-include">
+			<div>
+				<div class="picto-80">
+					<img src="/themes/read/images/icon_clock.svg" width="80" height="80">
+				</div>
+				<div class="feature-sub">Unlimited 24/7 support</div>
+			</div>
+			<div>
+				<div class="picto-80">
+					<img src="/themes/read/images/icon_accept_success_check_tick.svg" width="80" height="80">
+				</div>
+				<div class="feature-sub">Quick and easy setup</div>
+			</div>
+			<div>
+				<div class="picto-80">
+					<img src="/themes/read/images/icon-performance.svg" width="80" height="80">
+				</div>
+				<div class="feature-sub">{{ 'Maths & Science practice'|t }}</div>
+			</div>
+			<div>
+				<div class="picto-80">
+					<img src="/themes/read/images/plans-feature-4-charter.svg" width="80" height="80">
+				</div>
+				<div class="feature-sub">Add your own lessons</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+</div>
+</div>
+
+<script src="https://js.chargebee.com/v2/chargebee.js" data-cb-gtm-enabled="true" data-cb-refersion-enabled="true"></script>

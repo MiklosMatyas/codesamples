@@ -1,0 +1,8 @@
+name: ReadAndSpell Pricing
+type: module
+description: ReadAndSpell Pricing blocks
+package: Custom
+core_version_requirement: ^9 || ^10
+
+dependencies:
+  - jquery_ui_effects:jquery_ui_effects

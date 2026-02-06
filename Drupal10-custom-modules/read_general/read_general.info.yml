@@ -1,0 +1,5 @@
+name: ReadAndSpell General
+type: module
+description: General custom functions.
+package: Custom
+core_version_requirement: ^9 || ^10

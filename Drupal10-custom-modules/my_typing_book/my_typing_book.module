@@ -1,0 +1,114 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Entity\EntityFieldManager;
+
+/**
+ * Implements hook_menu().
+ */
+function my_typing_book_menu() {
+  $items = [];
+  
+  // Define a menu item for the admin page.
+  $items['admin/config/my-typing-book'] = [
+    'title' => 'Update Boolean Field',
+    'description' => 'Select a boolean field and update its value for selected nodes by title.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['my_typing_book_form'],
+    'access callback' => TRUE, // Add permission checks as needed.
+  ];
+  
+  return $items;
+}
+
+/**
+ * Form for the admin page.
+ */
+function my_typing_book_form($form, FormStateInterface $form_state) {
+  // Get boolean fields from 'blog_post' node type.
+  $fields = my_typing_book_get_boolean_fields();
+
+  $form['boolean_field'] = [
+    '#type' => 'select',
+    '#title' => t('Select Boolean Field'),
+    '#description' => t('Choose the boolean field you want to update.'),
+    '#options' => $fields,
+    '#required' => TRUE,
+  ];
+
+  $form['node_titles'] = [
+    '#type' => 'textarea',
+    '#title' => t('Node Titles'),
+    '#description' => t('Enter node titles, one per line.'),
+    '#rows' => 10,
+    '#required' => TRUE,
+  ];
+
+  // Checkbox for 'Yes' or 'No' value.
+  $form['set_value'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Set to Yes (checked) or No (unchecked)'),
+    '#description' => t('Check the box to set the field to Yes (1), or leave unchecked for No (0).'),
+    '#default_value' => 1,  // Default to Yes.
+  ];
+
+  $form['submit'] = [
+    '#type' => 'submit',
+    '#value' => t('Update Nodes'),
+  ];
+  
+  return $form;
+}
+
+/**
+ * Form submit handler.
+ */
+function my_typing_book_form_submit($form, FormStateInterface $form_state) {
+  // Get the selected boolean field.
+  $boolean_field = $form_state->getValue('boolean_field');
+  // Get the list of titles entered by the user.
+  $titles = $form_state->getValue('node_titles');
+  $titles_array = array_filter(array_map('trim', explode("\n", $titles)));
+  // Determine the boolean value to set: 1 for Yes, 0 for No.
+  $set_value = $form_state->getValue('set_value') ? 1 : 0;
+
+  // Loop through each title and update the corresponding node.
+  foreach ($titles_array as $title) {
+    $nids = \Drupal::entityQuery('node')
+      ->condition('title', $title)
+      ->condition('type', 'blog_post') // Only for blog_post content type.
+      ->execute();
+
+    if (!empty($nids)) {
+      foreach ($nids as $nid) {
+        $node = Node::load($nid);
+        if ($node && !$node->get($boolean_field)->value == $set_value) {
+          $node->set($boolean_field, $set_value);
+          $node->save();
+        }
+      }
+    }
+  }
+
+  // Display a success message.
+  \Drupal::messenger()->addStatus(t('The field "@field" has been updated for the specified nodes.', ['@field' => $boolean_field]));
+}
+
+/**
+ * Helper function to get all boolean fields for 'blog_post' node type.
+ */
+function my_typing_book_get_boolean_fields() {
+  $entity_field_manager = \Drupal::service('entity_field.manager');
+  $fields = $entity_field_manager->getFieldDefinitions('node', 'blog_post');
+  $boolean_fields = [];
+
+  // Loop through fields and collect boolean fields.
+  foreach ($fields as $field_name => $field_definition) {
+    if ($field_definition->getType() == 'boolean' && !$field_definition->getFieldStorageDefinition()->isBaseField()) {
+      $boolean_fields[$field_name] = $field_definition->getLabel();
+    }
+  }
+
+  return $boolean_fields;
+}

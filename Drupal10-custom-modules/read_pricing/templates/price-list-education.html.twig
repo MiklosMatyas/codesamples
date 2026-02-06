@@ -1,0 +1,192 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display something.
+ *
+ * Available variables:
+ * - foo: Foo variable description.
+ *
+ * @see template_preprocess_price_list_education()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="ordering-section education-slider edu-2024 content-1180">
+	<div id="order-licence-form" class="order-licence-form multiform">
+
+		<label for="country">Choose your country</label><div class="country-wrapper"><select data-flag="GB" id="country" name="country"><option value="GB">United Kingdom</option><option value="US">United States</option><option value="IE">Ireland</option><option value="EU">Europe</option><?php if(drupal_get_path_alias() != "parents/home-course") : ?><option value="CA">Canada</option><?php endif; ?><option value="AU">Australia</option><option value="NZ">New Zealand</option><option value="Other">Other</option>
+		</select><div class="icon-down"></div></div>     
+
+		<div class="switches">
+			<div class="annually-switch">
+				<input name="switch" class="annuallyCheckbox" id="switch" type="checkbox" value="1" >
+				<label for="switch">Toggle</label><span>{{ "Pay annually and save 2 months" | t }}</span>
+			</div>
+			<div class="users-box" style="">
+				<span class="choose">Choose package size:</span>
+				<div class="userbox-mobile"><i></i>
+					<select id="edit-submitted-number-of-users-new" name="users" class="form-text form-number">
+						<option value="10">Up to 10 students</option>
+						<option value="20">Up to 20 students</option>
+						<option value="50">Up to 50 students</option>
+						<option value="100">Up to 100 students</option>
+						<option value="250">Up to 250 students</option>
+						<option value="500">Up to 500 students</option>
+						<option value="1000">Up to 1000 students</option>
+					</select>
+				</div>
+				<div class="currency-box">
+					{% include '@read_pricing/currency-selector.html.twig' %}
+				</div>
+			</div>        
+		</div>
+		
+
+
+		<div class="period-box full">
+			<div class="total lite">
+				<span class="t-unlimit"></span>
+				<span class="t-label">Lite</span>
+				<span class="t-desc">{{ "Typing + Literacy" | t }}</span>
+				<span class="t-yearpr"></span>
+				<span class="t-yearpr-vat"></span>
+				<span class="t-userpr"></span>
+				<div class="details">
+					<span class="d-title">What’s included</span>
+					<ul>
+						<li class="green-check student-acc">Up to  users</li>
+						<li class="green-check">Unlimited teacher accounts</li>
+						<li class="green-check">Unlimited classes</li>
+						<li class="green-check"><strong>5 levels</strong> of the award-winning TTRS Course <strong>(155 modules)</strong></li>
+						<li class="green-check">Weekly email reports</li>
+						<li class="green-check">Weekly goals</li>
+						<li class="grey-check">Subject-specific courses</li>
+						<li class="grey-check">Custom lessons</li>
+						<li class="grey-check">Spelling assessments</li>
+						<li class="grey-check">Free writing exercises</li>
+					</ul>
+				</div>
+			</div>
+			<div class="total standard selected">
+				<span class="t-unlimit"></span>
+				<span class="t-label">Standard</span>
+				<span class="t-desc">Typing + Literacy</span>
+				<span class="t-yearpr"></span>
+				<span class="t-yearpr-vat"></span>
+				<span class="t-userpr"></span>
+				<div class="details">
+					<span class="d-title">What’s included</span>
+					<ul>
+						<li class="green-check student-acc">Up to  users</li>
+						<li class="green-check">Unlimited teacher accounts</li>
+						<li class="green-check">Unlimited classes</li>
+						<li class="green-check"><strong>18 levels</strong> of the award-winning TTRS Course <strong>(558 modules)</strong></li>
+						<li class="green-check">Weekly email reports</li>
+						<li class="green-check">Weekly goals</li>
+						<li class="grey-check">Subject-specific courses</li>
+						<li class="grey-check">Custom lessons</li>
+						<li class="grey-check">Spelling assessments</li>
+						<li class="grey-check">Free writing exercises</li>
+					</ul>
+				</div>
+			</div>
+			<div class="total premium">
+				<span class="t-unlimit"></span>
+				<span class="t-label">Premium</span>
+				<span class="t-desc">Typing + Literacy + Subjects</span>
+				<span class="t-yearpr"></span>
+				<span class="t-yearpr-vat"></span>
+				<span class="t-userpr"></span>
+				<div class="details">
+					<span class="d-title">What’s included</span>
+					<ul>
+						<li class="green-check student-acc">Up to  users</li>
+						<li class="green-check">Unlimited teacher accounts</li>
+						<li class="green-check">Unlimited classes</li>
+						<li class="green-check"><strong>24 levels</strong> of the award-winning TTRS Course <strong>(744 modules)</strong></li>
+						<li class="green-check">Weekly email reports</li>
+						<li class="green-check">Weekly goals</li>
+						<li class="green-check">50+ Subject-specific courses</li>
+						<li class="green-check">Custom lessons</li>
+						<li class="green-check">Spelling assessments</li>
+						<li class="green-check">Free writing exercises</li>
+					</ul>
+				</div>
+			</div>
+			<div class="total custom">
+			<span class="t-unlimit unique"></span>
+				<span class="t-label">Custom package</span>
+				<span class="t-desc">&nbsp;</span>
+				<span class="t-cont"><a href="#" class="contact-intercom nolink">Contact us</a></span>
+				<span class="t-yearpr">&nbsp;</span>
+				<div class="details">
+					<span class="d-title">Works for</span>
+					<ul>
+						<li class="green-check">1000 + students</li>
+						<li class="green-check">{{ "Districts, libraries and large organisations" | t }}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+               
+		
+        <div class="mailfields">
+			<div class="company-wrapper">
+				<div class="company-error"></div>
+				<input class="company" type="text" name="company" placeholder="Company / School name"  />
+			</div>
+			<div class="mailtest-wrapper">
+				<div class="email-error"></div>
+				<input class="mailtest" type="text" name="mailtest" placeholder="Enter your e-mail"  />
+			</div>
+		</div>
+		<div class="submit-button-edu"><a class="cb_link button-order-orange" href="javascript:;">Start now and save</a></div>
+
+
+		<p class="center freetrial" style="font-size: 16px; margin-bottom: 15px;">or <a href="/freetrial" style="color: #FFF; text-decoration: underline;">Try for Free</a></p>
+
+       	<center class="pusd">
+			<label style="display: none;" class="price-are USD">Prices are in USD</label>
+			<label style="display: none;" class="price-are CAD">Prices are in CAD</label>
+			<label style="display: none;" class="price-are AUD">Prices are in AUD</label>
+			<label style="display: none;" class="price-are NZD">Prices are in NZD</label>
+		</center>
+
+		<input type="hidden" name="cb_plan" id="cb_plan" data-plan="">
+
+		<h2>All of our plans include:</h2>
+                <div class="plans-include">
+                  <div>
+                    <div class="picto-80">
+                      <img src="/{{ base_path ~ directory }}/images/plans-feature-1-charter.svg" width="80" height="80">
+                    </div>
+                    <div class="feature-sub">Roll-on roll-off student places</div>
+                  </div>
+                  <div>
+                    <div class="picto-80">
+                      <img src="/{{ base_path ~ directory }}/images/plans-feature-2-charter.svg" width="80" height="80">
+                    </div>
+                    <div class="feature-sub">Free teacher accounts</div>
+                  </div>
+                  <div>
+                    <div class="picto-80">
+                      <img src="/{{ base_path ~ directory }}/images/plans-feature-3-charter.svg" width="80" height="80">
+                    </div>
+                    <div class="feature-sub">Home + school access</div>
+                  </div>
+                  <div>
+                    <div class="picto-80">
+                      <img src="/{{ base_path ~ directory }}/images/plans-feature-4-charter.svg" width="80" height="80">
+                    </div>
+                    <div class="feature-sub">Lessons with visual and auditory components</div>
+                  </div>
+                </div>  
+
+
+
+
+
+	</div>
+</div>
+
+<script src="https://js.chargebee.com/v2/chargebee.js" data-cb-gtm-enabled="true" data-cb-refersion-enabled="true"></script>

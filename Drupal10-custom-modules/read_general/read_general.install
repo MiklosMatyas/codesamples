@@ -1,0 +1,403 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the ReadAndSpell General module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function read_general_install() {
+  \Drupal::messenger()->addStatus(__FUNCTION__);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function read_general_uninstall() {
+  \Drupal::messenger()->addStatus(__FUNCTION__);
+}
+
+/**
+ * Implements hook_schema().
+ */
+function read_general_schema() {
+  $schema['read_general_example'] = [
+    'description' => 'Table description.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique record ID.',
+      ],
+      'uid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The {users}.uid of the user who created the record.',
+      ],
+      'status' => [
+        'description' => 'Boolean indicating whether this record is active.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'tiny',
+      ],
+      'type' => [
+        'type' => 'varchar_ascii',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Type of the record.',
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Timestamp when the record was created.',
+      ],
+      'data' => [
+        'type' => 'blob',
+        'not null' => TRUE,
+        'size' => 'big',
+        'description' => 'The arbitrary data for the item.',
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'type' => ['type'],
+      'uid' => ['uid'],
+      'status' => ['status'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function read_general_requirements($phase) {
+  $requirements = [];
+
+  if ($phase == 'runtime') {
+    $value = mt_rand(0, 100);
+    $requirements['read_general_status'] = [
+      'title' => t('ReadAndSpell General status'),
+      'value' => t('ReadAndSpell General value: @value', ['@value' => $value]),
+      'severity' => $value > 50 ? REQUIREMENT_INFO : REQUIREMENT_WARNING,
+    ];
+  }
+
+  return $requirements;
+}
+
+
+function read_general_update_8001() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_page']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+
+function read_general_update_8002() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_article']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8003() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_page_with_hero_image']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8004() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_page_with_transparent_background']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8005() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_centre']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8006() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_question']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8007() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_webform']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8008() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_honour']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8009() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_blog']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8010() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_slide']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8011() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_browse_box']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8012() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_blog_post']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8013() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_box']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8014() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_landing_page']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8015() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_research']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8016() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_sticky_banner_blogs']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8017() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_auto_login_url_token']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8018() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_case_study']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+function read_general_update_8019() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_biography']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+
+/**
+ * Fix entity.definitions.bundle_field_map key store with old bundles.
+ */
+function read_general_update_8020() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_testimonials']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8021() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $comment_map = $field_map_kv_store->get('comment');
+  // Remove the field_dates field from the bundle field map for the page bundle.
+  unset($comment_map['comment_body']['bundles']['comment_node_press']);
+  $field_map_kv_store->set('comment', $comment_map);
+}
+
+function read_general_update_8022() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_callout_background']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8023() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_callout_text_color']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8024() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_callout_title']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8025() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_front_end_style']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8026() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_hero_image']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8027() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_hero_image_full']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8028() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_hero_image_mobile']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8029() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_landing_page_template']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8030() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_show_callout']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8031() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_show_title']['bundles']['page_with_hero_image']);
+  $field_map_kv_store->set('node', $node_map);
+}
+
+function read_general_update_8032() {
+  /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $key_value_factory */
+  $key_value_factory = \Drupal::service('keyvalue');
+  $field_map_kv_store = $key_value_factory->get('entity.definitions.bundle_field_map');
+  $node_map = $field_map_kv_store->get('node');
+  // Remove the field_testimonials field from the bundle field map for the page bundle.
+  unset($node_map['field_testimonials']['bundles']['page_with_transparent_background']);
+  $field_map_kv_store->set('node', $node_map);
+}

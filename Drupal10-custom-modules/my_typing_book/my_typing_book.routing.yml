@@ -1,0 +1,7 @@
+my_typing_book.admin_form:
+  path: '/admin/config/my-typing-book'
+  defaults:
+    _form: '\Drupal\my_typing_book\Form\MyTypingBookForm'
+    _title: 'Update Boolean Field'
+  requirements:
+    _permission: 'administer site configuration'

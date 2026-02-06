@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display something.
+ *
+ * Available variables:
+ * - foo: Foo variable description.
+ *
+ * @see template_preprocess_price_list_business()
+ *
+ * @ingroup themeable
+ */
+#}
+<div id="fees" class="ordering-section order-form-home">
+	<div id="order-licence-form" class="order-licence-form">
+
+		<label for="country">Choose your country</label><div class="country-wrapper"><select data-flag="GB" id="country" name="country"><option value="GB">United Kingdom</option><option value="US">United States</option><option value="IE">Ireland</option><option value="EU">Europe</option><option value="CA">Canada</option><option value="AU">Australia</option><option value="NZ">New Zealand</option><option value="Other">Other</option>
+		</select><div class="icon-down"></div></div>
+
+		<div class="ireland-box" style="display: none;"><span>Please visit <a href='http://www.ttrs.ie' target='_blank' style='color: #B2DE65'>www.ttrs.ie</a> for our Ireland prices.</span></div>
+
+        <div class="currency-box">
+            {% include '@read_pricing/currency-selector.html.twig' %}
+        </div>
+
+		<div class="users-box">
+			<label for="users">Choose subscription:</label>
+		</div>
+
+		<div class="period-box">
+		<input type="radio" name="period" value="large250" id="l250" data-users="250">
+			<label for="l250" class="period first buy-section monthly1">
+				<span class="month-text"><span class="radio-circle"></span>Large business 250+ employees</span>
+				<span class="from">
+					<span class="um-text"><span class="um-data"></span></span>
+				</span>
+			</label>
+		<input type="radio" name="period" value="medium249" id="m249" data-users="249">
+			<label for="m249" class="period buy-section monthly1">
+				<span class="month-text"><span class="radio-circle"></span>Medium business up to 249 employees</span>
+				<span class="from">
+					<span class="um-text"><span class="um-data"></span></span>
+				</span>
+			</label>
+		<input type="radio" name="period" value="small49" id="s49" data-users="49" checked="checked">
+			<label for="s49" class="period buy-section monthly1">
+				<span class="month-text"><span class="radio-circle"></span>Small business up to 49 employees</span>
+				<span class="from">
+					<span class="um-text"><span class="um-data"></span></span>
+				</span>
+			</label>
+		<input type="radio" name="period" value="small10" id="s10" data-users="10">
+			<label for="s10" class="period last buy-section monthly1">
+				<span class="month-text"><span class="radio-circle"></span>Small business up to 10 employees</span>
+				<span class="from">
+					<span class="um-text"><span class="um-data"></span></span>
+				</span>
+			</label>
+
+		  <div class="clearfix"></div>
+		</div>
+
+       	<div class="include-vat">Prices include VAT</div>
+		<label style="display: none;" class="price-are USD">Prices are in USD</label>
+		<label style="display: none;" class="price-are CAD">Prices are in CAD</label>
+		<label style="display: none;" class="price-are AUD">Prices are in AUD</label>
+		<label style="display: none;" class="price-are NZD">Prices are in NZD</label>
+
+		<div class="submit-button-edu"><a class="button-order-orange" href="javascript:void();">Order now</a></div>
+		<div class="submit-button-edu-free"><a class="button-order-orange button-order-transparent" href="https://www.ttrsonline.com/registration/educationlicence">Start free trial</a></div>
+
+	</div>
+</div>   
+
+{% if app.request.server.get('PLATFORM_ENVIRONMENT') == 'master-7rqtwti' %}
+	{% set cb_site = "readandspell" %}
+{% else %}
+	{% set cb_site = "breeze-soft-test" %}
+{% endif %}
+<script src="https://js.chargebee.com/v2/chargebee.js" data-cb-site="{{ cb_site }}" data-cb-gtm-enabled="true" data-cb-refersion-enabled="true"></script>

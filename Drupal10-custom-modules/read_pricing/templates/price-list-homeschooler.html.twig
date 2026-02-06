@@ -1,0 +1,98 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display something.
+ *
+ * Available variables:
+ * - foo: Foo variable description.
+ *
+ * @see template_preprocess_price_list_homeschooler()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="ordering-section order-form-home order-form-family homeschoolers">
+	<div id="order-licence-form" class="order-licence-form">
+
+		<div class="country-wrapper"><select data-flag="GB" id="country" name="country"><option value="GB">United Kingdom</option><option value="US">United States</option><option value="IE">Ireland</option><option value="EU">Europe</option><option value="CA">Canada</option><option value="AU">Australia</option><option value="NZ">New Zealand</option><option value="Other">Other</option>
+		</select><div class="icon-down"></div></div>
+
+		<label for="users">Make TTRS a part of your school day!</label>
+		<div class="users-box">
+			<div class="currency-box"><span class="only-mobile">Choose currency:</span>
+				{% include '@read_pricing/currency-selector.html.twig' %}
+			</div>
+			<div class="select-number"><span class="only-mobile">Select number of students:</span></div>
+			<div class="user-group">
+			  <input type="radio" name="users" value="1" id="u1" checked="checked"><label for="u1" class="col-xs-6 users first">Individual</label><input type="radio" name="users" value="5" id="u5"><label for="u5" class="col-xs-6 users last">Family plan <span class="usr-txt fnt-12">(up to 5 users)</span></label>
+			</div>  
+		</div>
+
+		<label for="subscription" style="padding-bottom: 0;"></label>
+		<div class="period-box">
+			<div class="plan no-special">
+				<input type="radio" name="period" value="Monthly" id="m1">
+				<label for="m1" class="period first buy-section monthly">
+					<div class="circle">
+						<span class="radio-circle"></span>
+					</div>
+					<span class="month-text">
+						<span class="main-label">Pay monthly</span>
+					</span>
+					<span class="price-right">
+						<span><span class="from"></span><span class="permonth">/month</span></span>
+						<span><span class="from-year"></span><span class="peryear">/year</span></span>
+					</span>
+				</label>
+			</div>
+			<div class="plan">
+				<input type="radio" name="period" value="Yearly" id="m12" checked="checked">
+				<label for="m12" class="period last buy-section annualy special">
+					<div class="circle">
+						<span class="radio-circle"></span>
+					</div>
+					<span class="month-text">
+						<span class="main-label">Pay annually</span>
+						<span class="special-cell">
+							<span class="special-label red">Special <span class="only-desktop">homeschool </span> price</span>
+							<span class="special-label orange">Save 35%</span>
+						</span>
+					</span>
+					<span class="price-right">
+						<span><span class="oldp"></span><span class="permonth-small">/month</span></span>
+						<span><span class="from"></span><span class="permonth">/month</span></span>
+						<span><span class="from-year"></span><span class="peryear">/year</span></span>
+						
+					</span>
+				</label>
+			</div>
+			<div class="total">
+				<div class="special-banner red">Special price</div>
+				<span class="t-label">Total:</span>
+				<span class="t-fullpr"></span>
+				<span class="t-savepr"></span>
+				<span class="t-term"></span>
+			</div>
+
+		</div>
+
+		<div class="confirm">
+			<div class="confirm-error"></div>
+			<input type="checkbox" required id="confirm" name="confirm">
+			<label for="confirm">I confirm that I homeschool my child/children and I understand I may be asked to provide an official document to confirm my child's homeschool status</label>
+		</div>
+
+		<div class="mail-button">
+			<div class="mailtest-wrapper">
+				<div class="email-error"></div>
+				<input class="mailtest" type="text" name="mailtest" placeholder="Enter your e-mail"  />
+			</div>
+			<div class="submit-button homelicence"><a class="ttrs_button regform-open-x subscribe" href = "javascript:void(0)" >Start now!</a></div>
+		</div>
+        <div class="recurring"><p class="recu-monthly" style="display: none;">{{ "Monthly subscriptions are recurring and can be cancelled at any time."|t }}</p>
+			<p class="recu-Yearly recu-YearlyS" style="display: none;">{{ "Subscriptions are recurring and can be cancelled at any time."|t }}</p></div>
+	</div>
+	<input type="hidden" name="cb_plan" id="cb_plan" data-plan="">
+</div>
+
+<script src="https://js.chargebee.com/v2/chargebee.js" data-cb-gtm-enabled="true" data-cb-refersion-enabled="true"></script>

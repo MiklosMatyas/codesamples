@@ -1,0 +1,7 @@
+name: 'My Typing Coloring Book'
+type: module
+description: 'Change the boolean field "field_typing_coloring_book" to 1 based on node titles.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:node

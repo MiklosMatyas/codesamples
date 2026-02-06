@@ -1,0 +1,181 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display something.
+ *
+ * Available variables:
+ * - foo: Foo variable description.
+ *
+ * @see template_preprocess_price_list_education()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="start-your over-bg- start-your-multi pricing-slider clearfix">
+	<div class="badge-30-day" id="fees"><img alt="" src="/sites/default/files/30day-2x.png" style="height:150px; width:150px"></div>
+	<h2 class="title">Start your subscription now</h2>
+	<div id="block-readandspell-price-list-lib-slider">
+		<div class="ordering-section education-slider">
+			<div id="order-licence-form" class="order-licence-form multiform">
+
+				<label for="country">Choose your country</label>
+				<div class="country-wrapper">
+					<select data-flag="GB" id="country" name="country">
+						<option value="GB">United Kingdom</option>
+						<option value="US">United States</option>
+						<option value="IE">Ireland</option>
+						<option value="EU">Europe</option>
+						<option value="CA">Canada</option>
+						<option value="AU">Australia</option>
+						<option value="NZ">New Zealand</option>
+						<option value="Other">Other</option>
+					</select>
+					<div class="icon-down"></div>
+				</div>
+
+				<div class="currency-box">
+					{% include '@read_pricing/currency-selector.html.twig' %}
+				</div>
+
+
+				<div class="users-box">
+					<div class="users-box-inner">
+						<input id="edit-submitted-number-of-users-new" name="users" size="5" min="100" max="10000" step="100" class="form-text form-number" value="500" type="text">
+					</div>
+				</div>
+
+				<div class="period-box got-special-x">
+					<div class="wrapper-monthly">
+						<input type="radio" name="period" value="monthly" id="m1">
+						<label for="m1" class="period first buy-section monthly1">
+							<span class="month-text">
+								<span class="radio-circle"></span>Pay monthly</span>
+							<span class="price-right">
+								<span class="from"></span>
+								<span class="permonth">
+									/ month</span><br/>
+								<span class="from-year-student"></span>
+								<span class="peryear">
+									/ student</span>
+							</span>
+						</label>
+					</div>
+					<div class="wrapper-annually">
+						<input type="radio" name="period" value="Yearly" id="m12" checked="checked">
+						<label for="m12" class="period last buy-section annualy">
+							<span class="month-text">
+								<span class="radio-circle"></span>Pay annually<span class="save-3 green-1">save 2 months</span>
+							</span>
+							<span class="price-right">
+								<span class="from"></span>
+								<span class="permonth">
+									/ month</span><br/>
+								<span class="from-year-student"></span>
+								<span class="peryear">
+									/ student</span>
+							</span>
+						</label>
+					</div>
+					<div class="wrapper-annuallyS nodisplay">
+						<div class="autumn-special" style="">
+							<input type="radio" name="period" value="YearlyS" id="m12S">
+							<label for="m12S" class="period last buy-section annualyS">
+								<span class="month-text">
+									<span class="radio-circle"></span>Pay annually<span class="save-3 orange-1 double">save 2 months</span>
+									<span class="save-3 red-1 double">Plus 30% off now</span>
+								</span>
+								<span class="price-right">
+									<span class="from"></span>
+									<span class="permonth">
+										/ month</span><br/>
+									<span class="from-year-student"></span>
+									<span class="peryear">
+										/ student</span>
+								</span>
+							</label>
+						</div>
+					</div>
+					<div class="contact-box" style="display: none;">
+						<span>
+							<a href='/Contact_details' target='_blank' style='color: #B2DE65'>Please contact us</a>
+						</span>
+					</div>
+					<div class="total">
+						<div class="special-banner red">Special offer -30%</div>
+						<span class="t-label">Total:</span>
+						<span class="t-fullpr"></span>
+						<span class="t-savepr"></span>
+						<span class="t-term"></span>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="mailtest-wrapper">
+					<div class="email-error"></div>
+					<input class="mailtest" type="text" name="mailtest" placeholder="Enter your e-mail"/>
+				</div>
+
+				<div class="center">We have special 3, 5 and 10 years packages for you. Please
+					<span class="contact-intercom yellow">
+						<b>contact us</b>
+					</span>
+					for more information.
+				</div>
+
+				<div class="submit-button-edu">
+					<a class="cb_link button-order-orange" href="javascript:;">Start now</a>
+				</div>
+
+				<div class="include-vat">Prices exclude VAT.</div>
+				<center>
+					<label style="display: none;" class="price-are USD">Prices are in USD</label>
+					<label style="display: none;" class="price-are CAD">Prices are in CAD</label>
+					<label style="display: none;" class="price-are AUD">Prices are in AUD</label>
+					<label style="display: none;" class="price-are NZD">Prices are in NZD</label>
+				</center>
+				<div class="small-text">
+					<p>{{ 'Subscriptions are renewed automatically and can be cancelled or paused at any time.' | t }}</p>
+				</div>
+
+				<input type="hidden" name="cb_plan" id="cb_plan" data-plan="">
+
+				<h2>All of our plans include:</h2>
+				<div class="plans-include">
+					<div>
+						<div class="picto-80">
+							<img src="{{ base_path ~ directory }}/images/plans-feature-1.svg" width="80" height="80">
+						</div>
+						<div class="feature-sub">Roll-on roll-off student places</div>
+					</div>
+					<div>
+						<div class="picto-80">
+							<img src="{{ base_path ~ directory }}/images/plans-feature-2.svg" width="80" height="80">
+						</div>
+						<div class="feature-sub">Free teacher accounts</div>
+					</div>
+					<div>
+						<div class="picto-80">
+							<img src="{{ base_path ~ directory }}/images/plans-feature-3.svg" width="80" height="80">
+						</div>
+						<div class="feature-sub">Home + school access</div>
+					</div>
+					<div>
+						<div class="picto-80">
+							<img src="{{ base_path ~ directory }}/images/plans-feature-4.svg" width="80" height="80">
+						</div>
+						<div class="feature-sub">Custom lesson creator tool</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% if app.request.server.get('PLATFORM_ENVIRONMENT') == 'master-7rqtwti' %}
+	{% set cb_site = "readandspell" %}
+{% else %}
+	{% set cb_site = "breeze-soft-test" %}
+{% endif %}
+<script src="https://js.chargebee.com/v2/chargebee.js" data-cb-site="{{ cb_site }}" data-cb-gtm-enabled="true" data-cb-refersion-enabled="true"></script>

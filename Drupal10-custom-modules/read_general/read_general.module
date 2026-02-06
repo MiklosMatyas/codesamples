@@ -1,0 +1,117 @@
+<?php
+/**
+ * @file
+ * Primary module hooks for ReadAndSpell General module.
+ *
+ */
+
+//namespace Drupal\read_general;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Url;
+
+
+/**
+ * Implements hook_theme().
+ */
+function read_general_theme($existing, $type, $theme, $path) {
+  return [
+    'footer_text' => [
+      'variables' => ['year' => date("Y")],
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for footer_text template.
+ *
+ * Default template: footer_text.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - foo: Foo variable description.
+ */
+function template_preprocess_footer_text(array &$variables) {
+  $variables['foo'] = 'bar';
+}
+
+/**
+ * Implements hook_preprocess_views_view_unformatted().
+ */
+function read_general_preprocess_views_view_unformatted(&$variables) {
+  // Add custom blocks to main Blog page View
+  $block = \Drupal\block\Entity\Block::load('mailchimpsignupform');
+  $variables['mailchimpsignupform'] = \Drupal::entityTypeManager()
+  ->getViewBuilder('block')
+  ->view($block);
+
+  $block = \Drupal\block\Entity\Block::load('testimonialonblog');
+  $variables['testimonialonblog'] = \Drupal::entityTypeManager()
+  ->getViewBuilder('block')
+  ->view($block);
+
+  $block = \Drupal\block\Entity\Block::load('blackad');
+  $variables['blackad'] = \Drupal::entityTypeManager()
+  ->getViewBuilder('block')
+  ->view($block);
+
+  $block = \Drupal\block\Entity\Block::load('educationsubscriptiononblog');
+  $variables['educationsubscriptiononblog'] = \Drupal::entityTypeManager()
+  ->getViewBuilder('block')
+  ->view($block);
+
+}
+/**
+ * Implements hook_form_alter().
+ */
+function read_general_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    /**
+     *    Intercom API Submit for Quiz.
+     */
+    if ($form_id == 'webform_submission_orton_gillingham_quiz_uk_add_form') {
+      if ($form_state->getValue('your_name') && $form_state->getValue('email_address')) {
+          $name = $form_state->getValue('your_name');
+          $email = $form_state->getValue('email_address');
+          $struggle = $form_state->getValue('reading_spelling');
+          $time = time();
+
+          $intercom_token = getenv('INTERCOM_ACCESS_TOKEN');
+          if (empty($intercom_token)) {
+            \Drupal::logger('OG Quiz Intercom Lead')->error('Missing INTERCOM_ACCESS_TOKEN env var.');
+            return;
+          }
+          $client = new Intercom\IntercomClient($intercom_token, null);
+    
+          // Create a lead
+          $lead = $client->contacts->create([
+            "role" => "lead",
+            "email" => $email,
+            "name" => $name,
+            "signed_up_at" => $time,
+            "custom_attributes" => [
+              "QuizStruggle" => $struggle
+            ]
+          ]);
+          \Drupal::logger('OG Quiz Intercom Lead')->info($lead->created_at . " ID:" . $lead->id . " - " . $lead->email);
+      }
+
+
+      // Conditional redirection
+      $form['actions']['submit']['#submit'][] = 'ctm_redirect';
+
+    }
+
+}
+
+// Quiz Conditional redirection
+function ctm_redirect(array &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('reading_spelling') == "Reading") {
+    $url= Url::fromUserInput('/struggle-with-reading');
+  } elseif ($form_state->getValue('reading_spelling') == "Spelling") {
+    $url = Url::fromUserInput('/struggle-with-spelling');
+  } else {
+    $url = Url::fromUserInput('/home-course');
+  }
+  
+  $form_state->setRedirectUrl($url);
+}
